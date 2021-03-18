@@ -1,0 +1,19 @@
+{
+    "name": "pepperaddict/mcshelper",
+    "description": "A tool for customer service communication through monday.com",
+    "type": "project",
+    "license": "GPL",
+    "authors": [
+        {
+            "name": "Pepper Addict",
+            "email": "jenearly@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "MCS\\": "./include"
+        }
+    }
+}
