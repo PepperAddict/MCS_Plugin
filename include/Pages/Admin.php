@@ -6,23 +6,31 @@
 
 namespace MCS\Pages;
 use \MCS\Base\BaseController;
+use \MCS\Api\SettingsApi;
 
 class Admin extends BaseController
 {
+    public $settings;
 
+    public function __construct() {
+        $this->settings = new SettingsApi();
+    }
     public function register()
     {
-        add_action('admin_menu', array($this, 'add_admin_pages'));
-        
-    }
+        $pages = [
+            [
+            'page_title' => 'Customer Service Helper',
+            'menu_title' => 'CS Helper',
+            'capability' => 'manage_options',
+            'menu_slug' => 'mcshelper_plugin',
+            'callback' => function() { echo '<h1>hello there</h1>';},
+            'icon_url' => 'dashicons-store',
+            'position' => 110
 
-    public function add_admin_pages()
-    {
-        add_menu_page('CSHELPER', 'Customer Service Helper', 'manage_options', 'mcshelper_plugin', array($this, 'admin_index'), 'dashicons-store', 110);
-    }
-    public function admin_index()
-    {
-        require_once $this->plugin_path . 'admin_template/index.php';
+        ]
+    ];
+        $this->settings->addPages($pages)->register();
+        
     }
 
 
